@@ -8,13 +8,13 @@ variable "aws_ami_map" {
   type = "map"
 
   default = {
-    ap-south-1     = "ami-95cda6fa"
-    ap-southeast-1 = "ami-f068a193"
-    eu-west-1      = "ami-665f7d00"
+    ap-south-1-ubuntu     = "ami-95cda6fa"
+    ap-southeast-1-ubuntu = "ami-f068a193"
+    eu-west-1-ubuntu      = "ami-665f7d00"
   }
 }
 
-variable "aws_region" {}
+variable "aws_region_os" {}
 
 variable "number_of_instances" {
   default = 1
