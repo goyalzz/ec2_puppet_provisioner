@@ -1,5 +1,6 @@
 #!/bin/bash
 
+metadata_url=http://169.254.169.254/latest/meta-data
 function setHostname() {
   instance_id=`curl $metadata_url/instance-id`
   hostname ${HOSTNAME}-$instance_id
