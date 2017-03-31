@@ -26,3 +26,11 @@ resource "aws_instance" "instance" {
     Name = "${var.name}"
   }
 }
+
+resource "aws_route53_record" "route53_record" {
+  zone_id = "${var.zone_id}"
+  name    = "${var.name}"
+  type    = "A"
+  ttl     = "30"
+  records = ["${aws_instance.instance.private_ip}"]
+}

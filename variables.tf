@@ -46,3 +46,5 @@ variable "root_volume_type" {
 variable "root_volume_size" {
   default = "30"
 }
+
+variable "zone_id" {}
