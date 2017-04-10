@@ -58,5 +58,5 @@ variable "facter" {
 variable "puppet_server" {}
 
 variable "envrionment" {
-  default = "prod"
+  default = "production"
 }

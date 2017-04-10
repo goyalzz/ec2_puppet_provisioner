@@ -32,15 +32,15 @@ function puppet_setup() {
   rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm && yum -y install puppet-agent
 
 
-  cat >/etc/puppetlabs/puppet/puppet.conf << EOL
-  [main]
-    environment=${ENVIRONMENT}
-    certname=${HOSTNAME}.$current_time
+cat >/etc/puppetlabs/puppet/puppet.conf << EOL
+[main]
+environment=${ENVIRONMENT}
+certname=${HOSTNAME}.$current_time
 
-  [agent]
-    server=${PUPPET_SERVER}
-    report=true
-  EOL
+[agent]
+server=${PUPPET_SERVER}
+report=true
+EOL
   echo "export FACTER_roles=${FACTER}" >> /etc/bashrc
 }
 
