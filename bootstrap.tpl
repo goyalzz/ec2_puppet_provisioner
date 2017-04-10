@@ -35,7 +35,7 @@ function puppet_setup() {
 cat >/etc/puppetlabs/puppet/puppet.conf << EOL
 [main]
 environment=${ENVIRONMENT}
-certname=${HOSTNAME}.$current_time
+certname=${HOSTNAME}
 
 [agent]
 server=${PUPPET_SERVER}
