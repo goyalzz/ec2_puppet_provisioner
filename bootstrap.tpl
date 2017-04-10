@@ -2,9 +2,10 @@
 
 #metadata_url=http://169.254.169.254/latest/meta-data
 function setHostname() {
-#  instance_id=`curl $metadata_url/instance-id`
-#  hostname ${HOSTNAME}-$instance_id
    hostname ${HOSTNAME}
+   echo "HOSTNAME=${HOSTNAME}" > /etc/hostnmae
+   echo "HOSTNAME=${HOSTNAME}" >> /etc/sysconfig/network
+   echo "preserve_hostname: true" >> /etc/cloud/cloud.cfg
 }
 
 function check_internet() {
@@ -20,7 +21,27 @@ function check_internet() {
 }
 
 function puppet_setup() {
-  echo "I'll do the setup via puppet"
+  FACTER="${FACTER}"
+  PUPPET_SERVER="${PUPPET_SERVER}"
+  ENVIRONMENT="${ENVIRONMENT}"
+
+  yum makecache fast
+  yum install wget -y
+
+  sleep 30
+  rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm && yum -y install puppet-agent
+
+
+  cat >/etc/puppetlabs/puppet/puppet.conf << EOL
+  [main]
+    environment=${ENVIRONMENT}
+    certname=${HOSTNAME}.$current_time
+
+  [agent]
+    server=${PUPPET_SERVER}
+    report=true
+  EOL
+  echo "export FACTER_roles=${FACTER}" >> /etc/bashrc
 }
 
 check_internet 500
