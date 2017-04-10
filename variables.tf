@@ -12,6 +12,8 @@ variable "aws_ami_map" {
     ap-southeast-1-ubuntu = "ami-f068a193"
     eu-west-1-ubuntu      = "ami-665f7d00"
     us-west-2-ubuntu             = "ami-14b07274"
+    us-west-2-centos             = "ami-14b07274"
+    us-east-1-centos = "ami-366be821"
   }
 }
 
