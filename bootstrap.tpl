@@ -5,6 +5,7 @@ function setHostname() {
    hostname ${HOSTNAME}
    echo "HOSTNAME=${HOSTNAME}" > /etc/hostnmae
    echo "HOSTNAME=${HOSTNAME}" >> /etc/sysconfig/network
+   hostnamectl set-hostname ${HOSTNAME} --static
    echo "preserve_hostname: true" >> /etc/cloud/cloud.cfg
 }
 
